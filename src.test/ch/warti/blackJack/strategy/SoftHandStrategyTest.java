@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import ch.warti.blackJack.Hand;
 import ch.warti.blackJack.TestUtil;
+import ch.warti.blackJack.strategy.hand.SoftHandStrategyImpl;
 
 public class SoftHandStrategyTest {
 
@@ -15,7 +16,7 @@ public class SoftHandStrategyTest {
 		Hand hand = new Hand();
 		hand.add(TestUtil.createCard(-1));
 		hand.add(TestUtil.createCard(8));
-		assertEquals(false, new SoftHandStrategy().shouldHit(hand, TestUtil.createCard(-1)));
+		assertEquals(false, new SoftHandStrategyImpl().shouldHit(hand, TestUtil.createCard(-1)));
 	}
 	
 	@Test
@@ -24,8 +25,8 @@ public class SoftHandStrategyTest {
 		hand.add(TestUtil.createCard(-1));
 		hand.add(TestUtil.createCard(2));
 		hand.add(TestUtil.createCard(5));
-		assertEquals(true, new SoftHandStrategy().shouldHit(hand, TestUtil.createCard(-1)));
-		assertEquals(false, new SoftHandStrategy().shouldHit(hand, TestUtil.createCard(5)));
+		assertEquals(true, new SoftHandStrategyImpl().shouldHit(hand, TestUtil.createCard(-1)));
+		assertEquals(false, new SoftHandStrategyImpl().shouldHit(hand, TestUtil.createCard(5)));
 	}
 	
 	@Test
@@ -34,7 +35,7 @@ public class SoftHandStrategyTest {
 		hand.add(TestUtil.createCard(-1));
 		hand.add(TestUtil.createCard(2));
 		hand.add(TestUtil.createCard(3));
-		assertEquals(true, new SoftHandStrategy().shouldHit(hand, TestUtil.createCard(3)));
+		assertEquals(true, new SoftHandStrategyImpl().shouldHit(hand, TestUtil.createCard(3)));
 	}
 	
 }

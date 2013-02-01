@@ -1,9 +1,10 @@
-package ch.warti.blackJack.strategy;
+package ch.warti.blackJack.strategy.hand;
 
 import ch.warti.blackJack.Card;
 import ch.warti.blackJack.Hand;
+import ch.warti.blackJack.strategy.StrategyUtil;
 
-public class HardHandStrategy extends Strategy implements HandStrategy {
+public class HardHandStrategyImpl extends StrategyUtil implements HandStrategy {
 	int[] dealerCardHitRule1 = {-1,10,9,8,7};
 	int[] dealerCardHitRule2 = {6,5,4};
 	int[] dealerCardHitRule3 = {3,2};
@@ -11,15 +12,15 @@ public class HardHandStrategy extends Strategy implements HandStrategy {
 	int[] dealerCardDoubleRule1 = {6,5,4,3};
 	int[] dealerCardDoubleRule2 = {-1,10};
 	
-	public HardHandStrategy() {
+	public HardHandStrategyImpl() {
 		super();
 	}
 	
 	@Override
 	public boolean shouldHit(Hand hand, Card dealerCard) {		
-		if (isDealerCardIn(dealerCard, dealerCardHitRule1)) return shouldHitOnRule1(hand);
-		if (isDealerCardIn(dealerCard, dealerCardHitRule2)) return shouldHitOnRule2(hand);
-		if (isDealerCardIn(dealerCard, dealerCardHitRule3)) return shouldHitOnRule3(hand);
+		if (isCardIn(dealerCard, dealerCardHitRule1)) return shouldHitOnRule1(hand);
+		if (isCardIn(dealerCard, dealerCardHitRule2)) return shouldHitOnRule2(hand);
+		if (isCardIn(dealerCard, dealerCardHitRule3)) return shouldHitOnRule3(hand);
 		
 		return false; //never reached, rules cover Cards from -1 to 10
 	}
@@ -63,18 +64,11 @@ public class HardHandStrategy extends Strategy implements HandStrategy {
 
 	private boolean isDealerCardDoubleRule1(Hand hand, Card dealerCard) {
 		return (countPoints(hand) == 9 && 
-				isDealerCardIn(dealerCard, dealerCardDoubleRule1));
+				isCardIn(dealerCard, dealerCardDoubleRule1));
 	}
 
 	private boolean isDealerCardDoubleRule2(Hand hand, Card dealerCard) {
 		return ((countPoints(hand) == 10 || countPoints(hand) == 11) && 
-				!isDealerCardIn(dealerCard, dealerCardDoubleRule2));
-	}
-
-
-	@Override
-	public boolean shouldSplit(Hand hand, Card dealerCard) {
-		// TODO Auto-generated method stub
-		return false;
+				!isCardIn(dealerCard, dealerCardDoubleRule2));
 	}
 }

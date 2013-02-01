@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import ch.warti.blackJack.Hand;
 import ch.warti.blackJack.TestUtil;
+import ch.warti.blackJack.strategy.hand.HardHandStrategyImpl;
 
 public class HardHandStrategyTest {
 
@@ -15,17 +16,17 @@ public class HardHandStrategyTest {
 		Hand hand = new Hand();
 		hand.add(TestUtil.createCard(10));
 		hand.add(TestUtil.createCard(6));
-		assertEquals(true, new HardHandStrategy().shouldHit(hand, TestUtil.createCard(-1)));
+		assertEquals(true, new HardHandStrategyImpl().shouldHit(hand, TestUtil.createCard(-1)));
 		
 		//holdOn 17
 		hand = new Hand();
 		hand.add(TestUtil.createCard(10));
 		hand.add(TestUtil.createCard(7));
-		assertEquals(false, new HardHandStrategy().shouldHit(hand, TestUtil.createCard(-1)));
-		assertEquals(false, new HardHandStrategy().shouldHit(hand, TestUtil.createCard(10)));
-		assertEquals(false, new HardHandStrategy().shouldHit(hand, TestUtil.createCard(9)));
-		assertEquals(false, new HardHandStrategy().shouldHit(hand, TestUtil.createCard(8)));
-		assertEquals(false, new HardHandStrategy().shouldHit(hand, TestUtil.createCard(7)));
+		assertEquals(false, new HardHandStrategyImpl().shouldHit(hand, TestUtil.createCard(-1)));
+		assertEquals(false, new HardHandStrategyImpl().shouldHit(hand, TestUtil.createCard(10)));
+		assertEquals(false, new HardHandStrategyImpl().shouldHit(hand, TestUtil.createCard(9)));
+		assertEquals(false, new HardHandStrategyImpl().shouldHit(hand, TestUtil.createCard(8)));
+		assertEquals(false, new HardHandStrategyImpl().shouldHit(hand, TestUtil.createCard(7)));
 		
 	}
 	
@@ -34,9 +35,9 @@ public class HardHandStrategyTest {
 		Hand hand = new Hand();
 		hand.add(TestUtil.createCard(9));
 		hand.add(TestUtil.createCard(2));
-		assertEquals(true, new HardHandStrategy().shouldHit(hand, TestUtil.createCard(6)));
-		assertEquals(true, new HardHandStrategy().shouldHit(hand, TestUtil.createCard(5)));
-		assertEquals(true, new HardHandStrategy().shouldHit(hand, TestUtil.createCard(4)));
+		assertEquals(true, new HardHandStrategyImpl().shouldHit(hand, TestUtil.createCard(6)));
+		assertEquals(true, new HardHandStrategyImpl().shouldHit(hand, TestUtil.createCard(5)));
+		assertEquals(true, new HardHandStrategyImpl().shouldHit(hand, TestUtil.createCard(4)));
 	}
 	
 	@Test
@@ -44,8 +45,8 @@ public class HardHandStrategyTest {
 		Hand hand = new Hand();
 		hand.add(TestUtil.createCard(10));
 		hand.add(TestUtil.createCard(2));
-		assertEquals(true, new HardHandStrategy().shouldHit(hand, TestUtil.createCard(3)));
-		assertEquals(true, new HardHandStrategy().shouldHit(hand, TestUtil.createCard(2)));
+		assertEquals(true, new HardHandStrategyImpl().shouldHit(hand, TestUtil.createCard(3)));
+		assertEquals(true, new HardHandStrategyImpl().shouldHit(hand, TestUtil.createCard(2)));
 	}
 	
 	@Test
@@ -53,7 +54,7 @@ public class HardHandStrategyTest {
 		Hand hand = new Hand();
 		hand.add(TestUtil.createCard(6));
 		hand.add(TestUtil.createCard(2));
-		assertEquals(false, new HardHandStrategy().shouldDouble(hand, TestUtil.createCard(3)));
+		assertEquals(false, new HardHandStrategyImpl().shouldDouble(hand, TestUtil.createCard(3)));
 	}
 	
 	@Test
@@ -61,7 +62,7 @@ public class HardHandStrategyTest {
 		Hand hand = new Hand();
 		hand.add(TestUtil.createCard(6));
 		hand.add(TestUtil.createCard(6));
-		assertEquals(false, new HardHandStrategy().shouldDouble(hand, TestUtil.createCard(3)));
+		assertEquals(false, new HardHandStrategyImpl().shouldDouble(hand, TestUtil.createCard(3)));
 	}
 	
 	@Test
@@ -69,17 +70,17 @@ public class HardHandStrategyTest {
 		Hand hand = new Hand();
 		hand.add(TestUtil.createCard(3));
 		hand.add(TestUtil.createCard(6));
-		assertEquals(true, new HardHandStrategy().shouldDouble(hand, TestUtil.createCard(6)));
-		assertEquals(true, new HardHandStrategy().shouldDouble(hand, TestUtil.createCard(5)));
-		assertEquals(true, new HardHandStrategy().shouldDouble(hand, TestUtil.createCard(4)));
-		assertEquals(true, new HardHandStrategy().shouldDouble(hand, TestUtil.createCard(3)));
-		assertEquals(false, new HardHandStrategy().shouldDouble(hand, TestUtil.createCard(7)));
+		assertEquals(true, new HardHandStrategyImpl().shouldDouble(hand, TestUtil.createCard(6)));
+		assertEquals(true, new HardHandStrategyImpl().shouldDouble(hand, TestUtil.createCard(5)));
+		assertEquals(true, new HardHandStrategyImpl().shouldDouble(hand, TestUtil.createCard(4)));
+		assertEquals(true, new HardHandStrategyImpl().shouldDouble(hand, TestUtil.createCard(3)));
+		assertEquals(false, new HardHandStrategyImpl().shouldDouble(hand, TestUtil.createCard(7)));
 		
 		hand.clear();
 		hand.add(TestUtil.createCard(3));
 		hand.add(TestUtil.createCard(3));
 		hand.add(TestUtil.createCard(3));
-		assertEquals(false, new HardHandStrategy().shouldDouble(hand, TestUtil.createCard(6)));
+		assertEquals(false, new HardHandStrategyImpl().shouldDouble(hand, TestUtil.createCard(6)));
 	}
 	
 	@Test
@@ -87,14 +88,14 @@ public class HardHandStrategyTest {
 		Hand hand = new Hand();
 		hand.add(TestUtil.createCard(4));
 		hand.add(TestUtil.createCard(6));
-		assertEquals(false, new HardHandStrategy().shouldDouble(hand, TestUtil.createCard(-1)));
-		assertEquals(false, new HardHandStrategy().shouldDouble(hand, TestUtil.createCard(10)));
-		assertEquals(true, new HardHandStrategy().shouldDouble(hand, TestUtil.createCard(4)));
+		assertEquals(false, new HardHandStrategyImpl().shouldDouble(hand, TestUtil.createCard(-1)));
+		assertEquals(false, new HardHandStrategyImpl().shouldDouble(hand, TestUtil.createCard(10)));
+		assertEquals(true, new HardHandStrategyImpl().shouldDouble(hand, TestUtil.createCard(4)));
 		
 		hand.clear();
 		hand.add(TestUtil.createCard(4));
 		hand.add(TestUtil.createCard(3));
 		hand.add(TestUtil.createCard(3));
-		assertEquals(false, new HardHandStrategy().shouldDouble(hand, TestUtil.createCard(6)));
+		assertEquals(false, new HardHandStrategyImpl().shouldDouble(hand, TestUtil.createCard(6)));
 	}
 }

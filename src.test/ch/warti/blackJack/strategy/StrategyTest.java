@@ -10,7 +10,7 @@ import ch.warti.blackJack.Card;
 import ch.warti.blackJack.CardColour;
 import ch.warti.blackJack.CardType;
 import ch.warti.blackJack.Hand;
-import ch.warti.blackJack.strategy.Strategy;
+import ch.warti.blackJack.strategy.StrategyUtil;
 
 public class StrategyTest {
 
@@ -20,8 +20,7 @@ public class StrategyTest {
 		Card ace1 = new Card(CardType.ACE, CardColour.HERZ, -1, 0);
 		aces.add(ace1);		
 		
-		Strategy str = new SimpleStrategy(16, 17);
-		assertEquals(1, str.useAceValueAs(20, ace1, aces));		
+		assertEquals(1, StrategyUtil.useAceValueAs(20, ace1, aces));		
 	}
 	
 	@Test
@@ -30,8 +29,7 @@ public class StrategyTest {
 		Card ace1 = new Card(CardType.ACE, CardColour.HERZ, -1, 0);
 		aces.add(ace1);		
 		
-		Strategy str = new SimpleStrategy(16, 17);
-		assertEquals(11, str.useAceValueAs(9, ace1, aces));		
+		assertEquals(11, StrategyUtil.useAceValueAs(9, ace1, aces));		
 	}
 	
 	@Test
@@ -42,8 +40,7 @@ public class StrategyTest {
 		Card ace2 = new Card(CardType.ACE, CardColour.HERZ, -1, 0);
 		aces.add(ace2);	
 		
-		Strategy str = new SimpleStrategy(16, 17);
-		assertEquals(1, str.useAceValueAs(10, ace2, aces));		
+		assertEquals(1, StrategyUtil.useAceValueAs(10, ace2, aces));		
 	}
 	
 	@Test
@@ -54,8 +51,7 @@ public class StrategyTest {
 		Card ace2 = new Card(CardType.ACE, CardColour.HERZ, -1, 0);
 		aces.add(ace2);	
 		
-		Strategy str = new SimpleStrategy(16, 17);
-		assertEquals(11, str.useAceValueAs(9, ace1, aces));		
+		assertEquals(11, StrategyUtil.useAceValueAs(9, ace1, aces));		
 	}
 	
 	@Test
@@ -66,8 +62,7 @@ public class StrategyTest {
 		Card ace2 = new Card(CardType.ACE, CardColour.HERZ, -1, 0);
 		aces.add(ace2);	
 		
-		Strategy str = new SimpleStrategy(16, 17);
-		assertEquals(1, str.useAceValueAs(20, ace2, aces));		
+		assertEquals(1, StrategyUtil.useAceValueAs(20, ace2, aces));		
 	}
 	
 	@Test
@@ -100,22 +95,20 @@ public class StrategyTest {
 	
 	@Test
 	public void testIsHardHand10PlusAcePlus7() {
-		Strategy str = new SimpleStrategy(16, 17);
 		Hand hand = new Hand();
 		hand.add(new Card(CardType.NUMBER, CardColour.HERZ,10,1));
 		hand.add(new Card(CardType.ACE, CardColour.HERZ,-1,1));
 		hand.add(new Card(CardType.NUMBER, CardColour.HERZ,7,1));
-		assertEquals(true, str.isHardHand(hand));	
+		assertEquals(true, StrategyUtil.isHardHand(hand));	
 	}
 	
 	@Test
 	public void testIsNotHardHand4PlusAcePlus4() {
-		Strategy str = new SimpleStrategy(16, 17);
 		Hand hand = new Hand();
 		hand.add(new Card(CardType.NUMBER, CardColour.HERZ,4,1));
 		hand.add(new Card(CardType.ACE, CardColour.HERZ,-1,1));
 		hand.add(new Card(CardType.NUMBER, CardColour.HERZ,4,1));
-		assertEquals(false, str.isHardHand(hand));	
+		assertEquals(false, StrategyUtil.isHardHand(hand));	
 	}
 	
 	

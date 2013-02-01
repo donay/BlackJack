@@ -2,17 +2,21 @@ package ch.warti.blackJack.strategy;
 
 import ch.warti.blackJack.Card;
 import ch.warti.blackJack.Hand;
+import ch.warti.blackJack.strategy.hand.HardHandStrategyImpl;
+import ch.warti.blackJack.strategy.hand.SoftHandStrategyImpl;
+import ch.warti.blackJack.strategy.split.SplitStrategyImpl;
 
-public class WikipediaStrategy extends Strategy implements HandStrategy {
+public class WikipediaStrategy extends StrategyUtil implements Strategy {
 
-	private HardHandStrategy hhStrategy;
-	private SoftHandStrategy shStrategy;
+	private HardHandStrategyImpl hhStrategy;
+	private SoftHandStrategyImpl shStrategy;
+	private SplitStrategyImpl splitStrategy;
 
 	public WikipediaStrategy() {
 		super();
-		hhStrategy = new HardHandStrategy();
-		shStrategy = new SoftHandStrategy();
-		
+		hhStrategy = new HardHandStrategyImpl();
+		shStrategy = new SoftHandStrategyImpl();
+		splitStrategy = new SplitStrategyImpl();
 	}
 
 	@Override
@@ -22,9 +26,6 @@ public class WikipediaStrategy extends Strategy implements HandStrategy {
 			} else {
 				return shouldHitOnSoftHand(hand, dealerCard);
 			}
-		
-			/*if (countPoints(hand) <= drawTo) return true;
-			return false;*/
 	}
 
 	private boolean shouldHitOnHardHand(Hand hand, Card dealerCard) {
@@ -53,10 +54,8 @@ public class WikipediaStrategy extends Strategy implements HandStrategy {
 		return shStrategy.shouldDouble(hand, dealerCard);
 	}
 
-	@Override
 	public boolean shouldSplit(Hand hand, Card dealerCard) {
-		// TODO Auto-generated method stub
-		return false;
+		return splitStrategy.shouldSplit(hand, dealerCard);
 	}
 
 	

@@ -4,7 +4,7 @@ package ch.warti.blackJack.strategy;
 import ch.warti.blackJack.Card;
 import ch.warti.blackJack.Hand;
 
-public class SimpleStrategy extends Strategy {
+public class SimpleStrategy extends StrategyUtil implements Strategy {
 	protected int drawTo;
 	protected int stayOn;
 	
@@ -23,6 +23,16 @@ public class SimpleStrategy extends Strategy {
 	@Override
 	public String toString() {
 		return super.toString() + " " + this.drawTo + " " + this.stayOn;
+	}
+
+	@Override
+	public boolean shouldDouble(Hand hand, Card dealerCard) {
+		return false;
+	}
+
+	@Override
+	public boolean shouldSplit(Hand hand, Card dealerCard) {
+		return false;
 	}
 
 }

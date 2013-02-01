@@ -1,6 +1,7 @@
 package ch.warti.blackJack;
 
 import ch.warti.blackJack.strategy.Strategy;
+import ch.warti.blackJack.strategy.StrategyUtil;
 
 public class Player {
 	Hand hand;
@@ -55,11 +56,11 @@ public class Player {
 	}
 	
 	public int countCardPoints() {
-		return strategy.countPoints(hand);
+		return StrategyUtil.countPoints(hand);
 	}
 	
 	public boolean isBust() {
-		return (strategy.countPoints(hand)>21);
+		return (StrategyUtil.countPoints(hand)>21);
 	}
 	
 	
